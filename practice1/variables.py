@@ -14,5 +14,7 @@ def stu(bd):
 x="25BD"
 stu(x)
 
-
-
+x = y = z = "Ohoho"
+print(x)
+print(y)
+print(z)
