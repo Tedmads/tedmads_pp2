@@ -1,0 +1,26 @@
+[
+  {
+    "username": "Madina",
+    "email": "taid@gmail.com",
+    "birthday": "2008-6-1",
+    "group": "friend",
+    "phones": [
+      {
+        "phone": "87071264187",
+        "type": "mobile"
+      }
+    ]
+  }, 
+ {
+    "username": "Mag",
+    "email": "zhum@kbtu.kz",
+    "birthday": "2007-5-4",
+    "group": "family",
+    "phones": [
+      {
+        "phone": "87778889910",
+        "type": "work"
+      }
+    ]
+  }
+]
