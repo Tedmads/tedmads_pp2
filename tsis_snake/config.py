@@ -10,7 +10,7 @@ TOP_BAR = 30               # pixels reserved for score/level HUD
 DB_CONFIG = {
     "dbname": "snake_db",
     "user": "postgres",
-    "password": "alihan2007A",
+    "password": "@qWerty1234",
     "host": "localhost",
     "port": 5432,
 }
