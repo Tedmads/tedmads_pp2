@@ -28,3 +28,4 @@ def save_score(name, score, distance):
     lb = lb[:10]
     with open(LEADERBOARD_FILE, "w") as f:
         json.dump(lb, f, indent=2)
+        

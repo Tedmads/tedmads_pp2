@@ -153,6 +153,7 @@ def settings_screen(screen):
                     save_settings(s)
                     return
 
+
 def game_over_screen(screen, score, distance, coins):
     W, H = screen.get_size()
     retry_btn = pygame.Rect(W//2-100, 360, 180, 44)
