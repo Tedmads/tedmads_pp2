@@ -1,5 +1,15 @@
 [
   {
+    "name": "aaa",
+    "score": 32,
+    "distance": 399
+  },
+  {
+    "name": "aaa",
+    "score": 24,
+    "distance": 133
+  },
+  {
     "name": "A",
     "score": 23,
     "distance": 113
@@ -20,6 +30,11 @@
     "distance": 98
   },
   {
+    "name": "aaa",
+    "score": 14,
+    "distance": 80
+  },
+  {
     "name": "laalal",
     "score": 13,
     "distance": 195
@@ -33,20 +48,5 @@
     "name": "A",
     "score": 9,
     "distance": 93
-  },
-  {
-    "name": "laalal",
-    "score": 9,
-    "distance": 72
-  },
-  {
-    "name": "A",
-    "score": 8,
-    "distance": 71
-  },
-  {
-    "name": "A",
-    "score": 7,
-    "distance": 41
   }
 ]
