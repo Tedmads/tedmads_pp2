@@ -172,12 +172,13 @@ def play_game(screen, username):
     image_enemy      = pygame.image.load('assets/Enemy.png')
     coin_image       = pygame.image.load('assets/dollar.png').convert_alpha()
 
+    sound_crash = None
     if settings.get("sound", True):
         pygame.mixer.music.load('assets/background.wav')
         pygame.mixer.music.play(-1)
+        sound_crash = pygame.mixer.Sound('assets/crash.wav')
     else:
         pygame.mixer.music.stop()
-    sound_crash = pygame.mixer.Sound('assets/crash.wav')
 
     fontt = pygame.font.SysFont("Verdana", 20)
 
@@ -359,7 +360,7 @@ def play_game(screen, username):
         clock.tick(FPS)
 
         if not running:
-            if settings.get("sound", True):
+            if settings.get("sound", True) and sound_crash is not None:
                 sound_crash.play()
             pygame.mixer.music.stop()
             time.sleep(0.5)
