@@ -1,7 +1,15 @@
-import pygame
+﻿import pygame
 import random
 import time
-from persistence import load_settings
+import os
+from persistence import load_settings, save_score
+from ui import (
+    text_input_screen,
+    main_menu,
+    leaderboard_screen,
+    settings_screen,
+    game_over_screen,
+)
 
 # размеры окна игры
 WIDTH  = 400
@@ -18,6 +26,8 @@ CAR_TINTS = {
     "Blue":    (60,  120, 255),
     "Green":   (60,  220, 60),
 }
+
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 
 # ---------------- PLAYER ----------------
 class Player(pygame.sprite.Sprite):
@@ -208,18 +218,18 @@ def play_game(screen, username):
     tint       = CAR_TINTS.get(settings.get("car_color", "Default"))
 
     # загрузка изображений
-    image_background = pygame.image.load('assets/AnimatedStreet.png')
-    image_player     = pygame.image.load('assets/Player.png')
-    image_enemy      = pygame.image.load('assets/Enemy.png')
-    coin_image       = pygame.image.load('assets/dollar.png').convert_alpha()
+    image_background = pygame.image.load(os.path.join(ASSETS_DIR, 'AnimatedStreet.png'))
+    image_player     = pygame.image.load(os.path.join(ASSETS_DIR, 'Player.png'))
+    image_enemy      = pygame.image.load(os.path.join(ASSETS_DIR, 'Enemy.png'))
+    coin_image       = pygame.image.load(os.path.join(ASSETS_DIR, 'dollar.png')).convert_alpha()
 
     # загрузка и запуск музыки
     if settings.get("sound", True):
-        pygame.mixer.music.load('assets/background.wav')
+        pygame.mixer.music.load(os.path.join(ASSETS_DIR, 'background.wav'))
         pygame.mixer.music.play(-1)
 
     # звук столкновения
-    sound_crash = pygame.mixer.Sound('assets/crash.wav')
+    sound_crash = pygame.mixer.Sound(os.path.join(ASSETS_DIR, 'crash.wav'))
 
     fontt = pygame.font.SysFont("Verdana", 20)
 
@@ -274,4 +284,49 @@ def play_game(screen, username):
         pygame.display.flip()  # обновление экрана
         clock.tick(FPS)        # ограничение FPS
 
+    if settings.get("sound", True):
+        sound_crash.play()
+    pygame.mixer.music.stop()
+    time.sleep(0.3)
+
     return collected, distance
+
+
+def run_app():
+    pygame.init()
+    try:
+        pygame.mixer.init()
+    except pygame.error:
+        pass
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Racer")
+
+    username = text_input_screen(screen, "Enter your name")
+
+    running = True
+    while running:
+        action = main_menu(screen)
+
+        if action == "Play":
+            play_again = True
+            while play_again:
+                score, distance = play_game(screen, username)
+                save_score(username, score, distance)
+                next_action = game_over_screen(screen, score, distance, score)
+                play_again = next_action == "retry"
+
+        elif action == "Leaderboard":
+            leaderboard_screen(screen)
+
+        elif action == "Settings":
+            settings_screen(screen)
+
+        elif action == "Quit":
+            running = False
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    run_app()

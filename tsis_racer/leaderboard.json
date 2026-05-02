@@ -5,9 +5,19 @@
     "distance": 113
   },
   {
+    "name": "Mad",
+    "score": 22,
+    "distance": 185
+  },
+  {
     "name": "A",
     "score": 19,
     "distance": 137
+  },
+  {
+    "name": "Mad",
+    "score": 14,
+    "distance": 98
   },
   {
     "name": "laalal",
@@ -38,15 +48,5 @@
     "name": "A",
     "score": 7,
     "distance": 41
-  },
-  {
-    "name": "kjkjg",
-    "score": 7,
-    "distance": 56
-  },
-  {
-    "name": "A",
-    "score": 5,
-    "distance": 10
   }
 ]
