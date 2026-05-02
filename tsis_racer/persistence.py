@@ -3,7 +3,7 @@ import json, os
 LEADERBOARD_FILE = "leaderboard.json"
 SETTINGS_FILE = "settings.json"
 
-DEFAULT_SETTINGS = {"sound": True, "car_color": "default", "difficulty": "normal"}
+DEFAULT_SETTINGS = {"sound": True, "car_color": "Default", "difficulty": "normal"}
 
 def load_settings():
     if os.path.exists(SETTINGS_FILE):
