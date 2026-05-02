@@ -7,11 +7,15 @@ from config import *
 # ── Settings helpers ─────────────
 
 def load_settings():
+    defaults = {"snake_color": [0, 255, 0], "grid": True, "sound": False}
     try:
         with open("settings.json") as f:
-            return json.load(f)
+            loaded = json.load(f)
+            if isinstance(loaded, dict):
+                defaults.update(loaded)
+            return defaults
     except Exception:
-        return {"snake_color": [0, 255, 0], "grid": True, "sound": False}
+        return defaults
 
 def save_settings(settings):
     with open("settings.json", "w") as f:
@@ -22,7 +26,7 @@ def save_settings(settings):
 def draw_grid(screen):
     for i in range(HEIGHT // CELL):
         for j in range(WIDTH // CELL):
-            if j != 0:
+            if i != 0:
                 pygame.draw.rect(screen, colorGRAY, (i * CELL, j * CELL, CELL, CELL), 1)
 
 # ── Point (original, unchanged) ──

@@ -1,7 +1,12 @@
-import psycopg2
+try:
+    import psycopg2
+except Exception:
+    psycopg2 = None
 from config import DB_CONFIG
 
 def get_connection():
+    if psycopg2 is None:
+        raise RuntimeError("psycopg2 is not installed")
     return psycopg2.connect(**DB_CONFIG)
 
 def init_db():
